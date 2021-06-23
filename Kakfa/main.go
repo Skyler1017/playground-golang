@@ -23,7 +23,7 @@ type KafkaClient struct {
 // 获取kafka配置
 func getKafkaConfig() *sarama.Config {
 	config := sarama.NewConfig()
-	config.Version = sarama.V1_1_1_0 // 内网自己搭的kafka版本
+	config.Version = sarama.V1_1_1_0
 	config.Consumer.Return.Errors = true
 	config.Producer.Return.Successes = true
 	config.Producer.Flush.Frequency = time.Millisecond * 10
@@ -85,11 +85,12 @@ func (c *KafkaClient) sendMsg() {
 		},
 		Key: fmt.Sprintf("%s:%s", "test-pkg", time.Now()),
 	}
-	fmt.Println("发送消息...")
 	err = c.Send("mirrors_npm_publish", r)
 	if err != nil {
 		fmt.Println("发送失败", err)
+		return
 	}
+	fmt.Println("发送成功...")
 }
 
 func main() {
@@ -97,7 +98,7 @@ func main() {
 		Brokers:         []string{"127.0.0.1:9092"},
 		Topic:           "mirrors_npm_publish",
 		ConsumerGroupId: "mirrors_npm_publish_consumer",
-		MaxConcurrency:  10,
+		MaxConcurrency:  20,
 	}
 	kc, err := mq.NewKafkaClient(&mq.KafkaClientConfig{
 		Addrs:        cfg.Brokers,
@@ -114,6 +115,7 @@ func main() {
 	}
 	go func() {
 		for i := 0; i < 1; i++ {
+			// 从本地发送一条消息，测试是否能正常从kafka中解析
 			client.sendMsg()
 		}
 	}()
