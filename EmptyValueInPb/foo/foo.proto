@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+// package分成三级 trpc.app.server，app是一个业务项目分类，server是具体的进程服务名
+package trpc.playground.emptyTest;
+// 必须指定 option go_package，表明协议的git地址
+option go_package="./foo";
+
+
+import "google/protobuf/wrappers.proto";
+
+service Hello {
+  rpc SayHello (HelloReq) returns (HelloRsp) {}
+}
+message HelloReq  {
+  string name = 1;
+  google.protobuf.UInt64Value age = 2;
+}
+
+message HelloRsp {
+  int32 code = 1;
+  string msg = 2;
+}

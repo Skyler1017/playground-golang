@@ -1,0 +1,12 @@
+{"L":"INFO","T":"2021-06-11 15:56:18.698","C":"server/service.go:130","M":"process:53488, http service:trpc.playground.emptyTest launch success, tcp:0.0.0.0:9202, serving ..."}
+{"L":"INFO","T":"2021-06-11 15:59:27.831","C":"server/service.go:364","M":"process:53488, http service:trpc.playground.emptyTest, closing ..."}
+{"L":"INFO","T":"2021-06-11 15:59:40.892","C":"server/service.go:130","M":"process:53722, http service:trpc.playground.emptyTest launch success, tcp:0.0.0.0:9202, serving ..."}
+{"L":"INFO","T":"2021-06-11 16:03:40.558","C":"server/service.go:364","M":"process:53722, http service:trpc.playground.emptyTest, closing ..."}
+{"L":"INFO","T":"2021-06-11 16:03:53.251","C":"server/service.go:130","M":"process:54031, http service:trpc.playground.emptyTest launch success, tcp:0.0.0.0:9202, serving ..."}
+{"L":"INFO","T":"2021-06-11 16:04:42.367","C":"server/service.go:364","M":"process:54031, http service:trpc.playground.emptyTest, closing ..."}
+{"L":"INFO","T":"2021-06-11 16:04:55.144","C":"server/service.go:130","M":"process:54214, http service:trpc.playground.emptyTest launch success, tcp:0.0.0.0:9202, serving ..."}
+{"L":"INFO","T":"2021-06-11 16:06:04.461","C":"server/service.go:364","M":"process:54214, http service:trpc.playground.emptyTest, closing ..."}
+{"L":"INFO","T":"2021-06-11 16:06:16.290","C":"server/service.go:130","M":"process:54423, http service:trpc.playground.emptyTest launch success, tcp:0.0.0.0:9202, serving ..."}
+{"L":"INFO","T":"2021-06-11 16:06:27.627","C":"server/service.go:364","M":"process:54423, http service:trpc.playground.emptyTest, closing ..."}
+{"L":"INFO","T":"2021-06-11 16:06:39.340","C":"server/service.go:130","M":"process:54463, http service:trpc.playground.emptyTest launch success, tcp:0.0.0.0:9202, serving ..."}
+{"L":"INFO","T":"2021-06-15 11:10:54.963","C":"server/service.go:364","M":"process:54463, http service:trpc.playground.emptyTest, closing ..."}
