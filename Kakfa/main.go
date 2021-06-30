@@ -30,6 +30,11 @@ func getKafkaConfig() *sarama.Config {
 	config.Producer.Compression = sarama.CompressionSnappy
 	config.Producer.Flush.MaxMessages = 10240
 	config.Producer.RequiredAcks = sarama.RequiredAcks(-1)
+	config.Net.SASL.Enable = true
+	config.Net.SASL.User = "admin"
+	config.Net.SASL.Password = "admin-secret"
+	config.Net.SASL.Handshake = true
+	config.Net.SASL.Mechanism = "PLAIN"
 	return config
 }
 
@@ -114,9 +119,23 @@ func main() {
 		panic(err)
 	}
 	go func() {
-		for i := 0; i < 1; i++ {
+		cg := sarama.NewConfig()
+		cg.Producer.Return.Successes = true
+		cg.Version = sarama.V1_1_1_0
+		producer, err := mq.NewKafkaClient(&mq.KafkaClientConfig{
+			Addrs:        []string{"127.0.0.1:9092"},
+			GroupID:      "mirrors_npm_publish_consumer",
+			SaramaConfig: cg,
+		})
+
+		if err != nil {
+			fmt.Println("生产者初始化失败:", err)
+			return
+		}
+		for i := 0; i < 5; i++ {
 			// 从本地发送一条消息，测试是否能正常从kafka中解析
-			client.sendMsg()
+			c := KafkaClient{producer}
+			c.sendMsg()
 		}
 	}()
 	wg := sync.WaitGroup{}
